@@ -1,8 +1,6 @@
 package com.fluffy.resilience.controller;
 
-
 import com.fluffy.resilience.service.FakeService;
-import com.fluffy.resilience.service.FakeServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/retry")
-public class RetryController {
+@RequestMapping("/circuitbreaker")
+public class CircuitBreakerController {
 
-    private FakeService fakeService;
+    public FakeService fakeService;
 
-
-    @GetMapping
-    public String retry(@RequestParam(required = false, defaultValue = "0") int dieCount) throws Exception {
-        FakeServiceImpl.remainingDies.set(dieCount);
-        return fakeService.dieable();
+    @GetMapping()
+    public String circuitBreaker(@RequestParam(required = false, defaultValue = "false") Boolean fail) throws Exception {
+        return fakeService.dieable(fail);
     }
 
 }

@@ -17,7 +17,6 @@ public class RateLimitedController {
         return "Okay, we have the power :)";
     }
 
-    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public String fallback(RuntimeException e){
         return "this is too much for me!";
     }

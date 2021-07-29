@@ -1,19 +1,50 @@
 server:
     port: 8090
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+
+
 resilience4j.ratelimiter:
     instances:
         fluffyRateLimiter:
             limitForPeriod: 5
             limitRefreshPeriod: 10s
             timeoutDuration: 0
+
 resilience4j.timelimiter:
     instances:
         fluffyTimeLimiter:
             timeoutDuration: 2s
             cancelRunningFuture: true
+
 resilience4j.retry:
     instances:
         fluffyRetry:
             maxAttempts: 3
             waitDuration: 2s
 
+resilience4j.circuitbreaker:
+    instances:
+        fluffyCircuitBreaker:
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: COUNT_BASED #default
+            minimumNumberOfCalls: 10
+            waitDurationInOpenState: 30s
+            failureRateThreshold: 80
+
+resilience4j.bulkhead:
+    instances:
+        fluffyBulkhead:
+            maxConcurrentCalls: 1
+
+resilience4j.thread-pool-bulkhead:
+    instances:
+        fluffyBulkheadThreaded:
+            maxThreadPoolSize: 1
+            coreThreadPoolSize: 1
+            queueCapacity: 1
