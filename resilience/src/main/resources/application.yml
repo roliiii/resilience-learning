@@ -2,24 +2,35 @@ server:
     port: 8090
 
 management:
+    security:
+        enabled: false
     endpoints:
         web:
             exposure:
                 include: "*"
+    health:
+        circuitbreakers:
+            enabled: true
+        ratelimiters:
+            enabled: true
+    endpoint:
+        health:
+            show-details: always
 
 
 resilience4j.ratelimiter:
     instances:
         fluffyRateLimiter:
+            registerHealthIndicator: true
             limitForPeriod: 5
-            limitRefreshPeriod: 10s
+            limitRefreshPeriod: 15s
             timeoutDuration: 0
 
 resilience4j.timelimiter:
     instances:
         fluffyTimeLimiter:
             timeoutDuration: 2s
-            cancelRunningFuture: true
+            cancelRunningFuture: false
 
 resilience4j.retry:
     instances:
@@ -30,8 +41,9 @@ resilience4j.retry:
 resilience4j.circuitbreaker:
     instances:
         fluffyCircuitBreaker:
+            registerHealthIndicator: true
             slidingWindowSize: 10
-            permittedNumberOfCallsInHalfOpenState: 3
+            permittedNumberOfCallsInHalfOpenState: 5
             slidingWindowType: COUNT_BASED #default
             minimumNumberOfCalls: 10
             waitDurationInOpenState: 30s
