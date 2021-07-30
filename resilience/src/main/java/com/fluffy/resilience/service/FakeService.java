@@ -10,14 +10,11 @@ public interface FakeService {
     //@TimeLimiter("")
     CompletableFuture<String> slowFakeService(boolean slow) throws InterruptedException;
 
-    @Retry(name = "fluffyTimeLimiter", fallbackMethod = "fallBackForTry")
-    String dieable() throws Exception;
+    String dieable();
 
-    @CircuitBreaker(name = "fluffyRetry", fallbackMethod = "fallBackForCircuitBreaker")
     String dieable(boolean die) throws Exception;
 
     String resourceHungryService() throws InterruptedException;
 
-    @Bulkhead(name = "fluffyBulkheadThreaded", fallbackMethod = "fallBackForResourceHungryService", type = Bulkhead.Type.THREADPOOL)
     CompletableFuture<String> resourceHungryService_2() throws InterruptedException;
 }
