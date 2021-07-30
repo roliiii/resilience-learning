@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "370e76d4-ad3c-42c3-b80c-72af09b285dd",
+		"name": "resilience",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "retry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/retry?dieCount=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"retry"
+					],
+					"query": [
+						{
+							"key": "dieCount",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "circuitBreaker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/circuitbreaker?fail=false",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"circuitbreaker"
+					],
+					"query": [
+						{
+							"key": "fail",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bulkhead",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/bulkhead",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"bulkhead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bulkheadThreaded",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/bulkhead/threadpool",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"bulkhead",
+						"threadpool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ratelimited",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/ratelimited",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"ratelimited"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timelimited",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/timelimited?slow=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"timelimited"
+					],
+					"query": [
+						{
+							"key": "slow",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
