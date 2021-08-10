@@ -48,6 +48,7 @@ resilience4j.circuitbreaker:
             minimumNumberOfCalls: 10
             waitDurationInOpenState: 30s
             failureRateThreshold: 80
+            automaticTransitionFromOpenToHalfOpenEnabled: true
 
 resilience4j.bulkhead:
     instances:
